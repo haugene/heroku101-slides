@@ -166,12 +166,32 @@
 
 					<section>
 					<section>
-						<h2>Trenger du et QA miljø?</h2>
+						<h2>Trenger du et QA/staging miljø?</h2>
+						<small>Du kan ha mange Heroku apps per git repo</small>
 					</section>
 					<section>
+						<h3>Opprett en ny app, spesifiser navn på remote</h3>
+						<pre><code>heroku apps:create &lt;staging-app-navn&gt; --remote staging</code></pre>
 					</section>
 					<section>
+						<h3>Sjekk at den nye app'en har database addon og pgbackups</h3>
+						<pre><code>heroku addons --app &lt;staging-app-navn&gt;</code></pre>
 					</section>
+					<section>
+						<h3>Dersom den mangler database eller pgbackups; legg til</h3>
+						<pre><code>heroku addons:add heroku-postgresql:dev --app &lt;staging-app-navn&gt;</code></pre>
+						<pre><code>heroku addons:add pgbackups:auto-month --app &lt;staging-app-navn&gt;</code></pre>
+					</section>
+					<section>
+						<h3>Hent siste kopi av prod database til staging</h3>
+						<pre><code>heroku pgbackups:restore DATABASE_URL -a &lt;staging-app-navn&gt; `heroku pgbackups:url -a &lt;app-navn&gt;`</code></pre>
+					</section>
+					<section>
+						<h3>Push koden til staging og ta en titt!</h3>
+						<pre><code>git push staging master</code></pre>
+						<pre><code>heroku open --app &lt;staging-app-navn&gt;</code></pre>
+					</section>
+					
 				</section>
 
 				<section>
