@@ -4,15 +4,13 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Heroku 101</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
@@ -38,36 +36,225 @@
 			<div class="slides">
 
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
+					<h1>Heroku 101</h1>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small><a>Åshild Kaldahl Thorrud</a> | <a>Jan-Erik Carlsen</a> | <a>Kristian Haugene</a> | <a>Daniel Nordstrøm Carlsen</a></small>
 					</p>
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
+					<section>
+						<h1>
+							Sky
+						</h1>
+						<h3>Hva faen?</h3>
+					</section>
+					<section>
+						<h2>Plattform som en tjeneste</h2>
+					    <h4>Slipp å tenke på servere og infrastruktur. Heroku fikser!</h4>
+					</section>
+					<section>
+						<h3>Støtter flere språk, rammeverk og byggverktøy</h3>
+						<h4>Java - play! - node.js - Scala - Maven - gradle</h4>
+					</section>
+					<section>
+						<h2>Integrasjon med Git</h2>
+						<h4>Hvordan få koden til Heroku?</h4>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Klone enkel app</h2>
+						<pre><code>git clone https://github.com/haugene/heroku-webapp-demo.git</code></pre>
+					</section>
+					<section>
+						<h2>Opprette ny Heroku app</h2>
+						<pre><code>heroku apps:create &lt;ditt-app-navn&gt;</code></pre>
+					</section>
+					<section>
+						<h2>Push til Heroku</h2>
+						<pre><code>git push heroku master</code></pre>
+					</section>
+					<section>
+						<h2>Åpne applikasjonen i nettleseren</h2>
+						<pre><code>heroku open</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Hva skjedde nå?</h2>
+						<h4>Hvordan vet Heroku hva den skal gjøre?</h4>
+					</section>
+					<section>
+						<h2>La oss se på litt kode!</h2>
+					</section>
+				</section>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+				<section>
+					<section>
+						<h2>Klone app med mer funksjonalitet</h2>
+						<pre><code>git clone https://github.com/haugene/heroku-hibernate-springmvc-webapp.git</code></pre>
+					</section>
+					<section>
+						<h2>Opprette ny Heroku app</h2>
+						<pre><code>heroku apps:create &lt;ditt-app-navn&gt;</code></pre>
+					</section>
+					<section>
+						<h2>Push til Heroku</h2>
+						<pre><code>git push heroku master</code></pre>
+					</section>
+					<section>
+						<h2>Åpne applikasjonen i nettleseren</h2>
+						<pre><code>heroku open</code></pre>
+					</section>
+					<section>
+						<h2>La oss se på litt kode!</h2>
+					</section>
+					<section>
+						<h3>Husk: fjern create-drop property fra business-beans</h3>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h1>Database</h1>
+					</section>
+					<section>
+						<h3>Nye applikasjoner får postgres database addon</h3>
+						<h4><a href="https://addons.heroku.com/heroku-postgresql" target="_blank">https://addons.heroku.com/heroku-postgresql</a></h4>
+					</section>
+					<section>
+						<h3>Databasen blir injected som en systemvariabel</h3>
+						<pre><code>heroku config</code></pre>
+					</section>
+					<section>
+						<h2>Heroku Postgres GUI</h2>
+						<h4><a href="http://postgres.heroku.com" target="_blank">http://postgres.heroku.com</a></h4>
+					</section>	
+					<section>
+						<h2>Automatisk backup</h2>
+						<pre><code>heroku addons:add pgbackups:auto-month</code></pre>
+					</section>
+					<section>
+						<h2>Gjøre en manuell backup av databasen</h2>
+						<pre><code>heroku maintenance:on</code></pre>
+						<pre><code>heroku ps:scale web=0</code></pre>
+						<pre><code>heroku pgbackups:capture</code></pre>
+						<pre><code>heroku ps:scale web=1</code></pre>
+						<pre><code>heroku maintenance:off</code></pre>
+					</section>
+					<section>
+						<h2>Restore fra backup</h2>
+						<pre><code>heroku maintenance:on</code></pre>
+						<pre><code>heroku ps:scale web=0</code></pre>
+						<pre><code>heroku pgbackups:restore</code></pre>
+						<pre><code>heroku ps:scale web=1</code></pre>
+						<pre><code>heroku maintenance:off</code></pre>
+					</section>
+					<section>
+						<h3>Direkte SQL connection fra shell</h3>
+						<small>NB: krever at <a href="https://devcenter.heroku.com/articles/heroku-postgresql#local-setup" target="_blank">PostgreSQL</a> er installert lokalt</small>
+						<pre><code>heroku pg:psql</code></pre>
+					</section>
+					<section>
+						<h2>Del en database-dump</h2>
+						<small>Kan brukes for å migrere data til utviklingsmiljø</small>
+						<pre><code>heroku pgbackups:url</code></pre>
+					</section>
+				</section>
+
+					<section>
+					<section>
+						<h2>Trenger du et QA miljø?</h2>
+					</section>
+					<section>
+					</section>
+					<section>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Lasttest med Blitz</h2>
+					</section>
+					<section>
+						<h2>
+							Legge til addon
+						</h2>
+						<pre><code>heroku addons:add blitz:250</code></pre>
+					</section>
+					<section>
+						<h2>Åpne Blitz UI</h2>
+						<pre><code>heroku addons:open blitz</code></pre>
+					</section>
+					<section>
+						<h3>Legge til navn i database ved hjelp av URL-parameter</h3>
+						<pre><code>http://&lt;ditt-app-navn&gt;.herokuapp.com/web/overview?name=TestName</code></pre>
+					</section>
+					<section>
+					</section>
+					<section>
+					</section>
+					<section>
+					</section>
+					<section>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Addons</h2>
+						<h4><a href="https://addons.heroku.com/" target="_blank">https://addons.heroku.com/</a></h4>
+					</section>
+					<section>
+						<h2>Blitz - Load Testing from the Cloud</h2>
+					</section>
+					<section>
+						<h2>Adept scale</h2>
+					</section>
+					<section>
+						<h3>Skalere opp og lastteste på nytt</h3>
+						<pre><code>heroku ps:scale web=10</code></pre>
+						<pre><code>heroku addons:open blitz</code></pre>
+					</section>
+					<section>
+						<h3>Skalere ned for å ikke hisse opp Heroku finance</h3>
+						<pre><code>heroku ps:scale web=1</code></pre>
+					</section>
+					<section>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Blitz - Load Testing from the Cloud</h2>
+						<small>
+							Lurer du på hvor mange dynoer applikasjonen din trenger? Vil du ha beskjed hvis det er problemer med applikasjonen? <br/><br/>
+							Blitz lar deg enkelt lastteste og overvåke applikasjonen din fra skyen.
+						</small>
+
+					</section>
+					<section>
+						<h2>
+							Installasjon
+						</h2>
+						<pre><code>heroku addons:add blitz:250</code></pre>
+					</section>
+					<section>
+						<h2>Åpne Blitz UI</h2>
+						<pre><code>heroku addons:open blitz</code></pre>
+					</section>
 				</section>
 
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
+						<h2>Sesjonshåndtering</h2>
 						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
+							Heroku har ikke sticky sessions. Opp til deg å forsikre at brukeren sin session ikke blir borte hvis du har mer enn en web dyno.
+							http://www.jamesward.com/2011/11/30/using-mongodb-for-a-java-web-apps-httpsession
 						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
 					</section>
 					<section>
 						<h2>Basement Level 1</h2>
@@ -86,6 +273,12 @@
 						<a href="#/2" class="image">
 							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
 						</a>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Spørsmål?</h1>
 					</section>
 				</section>
 
@@ -153,7 +346,6 @@
 						<a href="?transition=concave#/transitions">Concave</a> -
 						<a href="?transition=zoom#/transitions">Zoom</a> -
 						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
 						<a href="?transition=none#/transitions">None</a> -
 						<a href="?#/transitions">Default</a>
 					</p>
@@ -228,21 +420,8 @@
 
 				<section>
 					<h2>Pretty Code</h2>
-					<pre><code contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
-  }
-}
+					<pre><code>
+git clone https://github.com/heroku101/playapp.git
 					</code></pre>
 					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
 				</section>
@@ -357,7 +536,7 @@ function linkify( selector ) {
 				center: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
