@@ -6,8 +6,8 @@
 
 		<title>Heroku 101</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Slides for a Heroku 101 course">
+		<meta name="author" content="Daniel Nordstrøm Carlsen, Åshild Kaldahl Thorrud, Kristian Haugene">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -190,6 +190,13 @@
 						<h3>Push koden til staging og ta en titt!</h3>
 						<pre><code>git push staging master</code></pre>
 						<pre><code>heroku open --app &lt;staging-app-navn&gt;</code></pre>
+					</section>
+					<section>
+						<h3>Bruk config variabler for å angi miljø</h3>
+						<small>Legg f.eks til variabelen DEV_MODE og bruk det i app'en for å gjøre tilpasninger avhengig av miljø</small>
+						<small>
+							<a href="https://devcenter.heroku.com/articles/config-vars" target="_blank">https://devcenter.heroku.com/articles/config-vars</a>
+						</small>
 					</section>
 				</section>
 
