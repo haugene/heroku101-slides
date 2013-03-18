@@ -207,12 +207,13 @@
 					</section>
 					<section>
 						<h3>Hent siste kopi av prod database til staging</h3>
+						<pre><code>heroku ps:scale web=0 --app &lt;staging-app-navn&gt;</code></pre>
 						<pre><code>heroku pgbackups:restore DATABASE_URL -a &lt;target-app&gt; `heroku pgbackups:url -a &lt;source-app&gt;`</code></pre>
+						<pre><code>heroku ps:scale web=1 --app &lt;staging-app-navn&gt;</code></pre>
 						<small>NB: target-app er typisk ditt staging-miljø, source-app er prod. Denne er lei å invertere.</small>
 					</section>
 					<section>
-						<h3>Push koden til staging og ta en titt!</h3>
-						<pre><code>git push staging master</code></pre>
+						<h3>Åpne opp ditt staging miljø og ta en titt!</h3>
 						<pre><code>heroku open --app &lt;staging-app-navn&gt;</code></pre>
 					</section>
 					<section>
